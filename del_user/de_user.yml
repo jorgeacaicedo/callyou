@@ -1,0 +1,9 @@
+---
+- hosts: centos_7
+  tasks:
+  - name: delete user test
+    become: yes
+    user:
+      name: test
+      state: absent
+      remove: yes
