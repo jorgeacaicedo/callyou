@@ -1,17 +1,17 @@
 ---
-- hosts: centos_7
+- hosts: ubuntu_14
   vars:
-    - test_password: '$1$RuDdxEJa$N1Uo2JgInhCkjvgNDKEYx.'
+    - test_password: '$1$5wM8e74A$S29Z4abwsD/cp5bEusL8c.'
   become: yes
   tasks:
-  - name: Add user test
+  - name: Add user masterkey
     user:
-      name=test
+      name=masterkey
       password={{ test_password }}
 
   - name: Add user remote to sudoers
     lineinfile:
       "dest=/etc/sudoers
-      regexp='^test ALL'
-      line='test ALL=(ALL) NOPASSWD: ALL'
+      regexp='^masterkey ALL'
+      line='masterkey ALL=(ALL) NOPASSWD: ALL'
       state=present"

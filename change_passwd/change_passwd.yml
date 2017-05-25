@@ -1,0 +1,8 @@
+---
+- hosts: centos_7
+  become: yes
+  vars:
+    - root_password: '$1$5wM8e74A$S29Z4abwsD/cp5bEusL8c.'
+  tasks:
+  - name: Change root password
+    user: name=root update_password=always password={{ root_password }}
