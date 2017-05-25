@@ -1,0 +1,19 @@
+---
+- hosts: centos_7
+  vars:
+    - test_password: '$1$RuDdxEJa$N1Uo2JgInhCkjvgNDKEYx.'
+
+  tasks:
+  - name: Add user test
+    become: yes
+    user:
+      name=test
+      password={{ test_password }}
+
+  - name: Add user remote to sudoers
+    become: yes
+    lineinfile:
+      "dest=/etc/sudoers
+      regexp='^test ALL'
+      line='test ALL=(ALL) NOPASSWD: ALL'
+      state=present"
